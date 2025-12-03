@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { CrearUsuarioComponent } from '../usuarios/crear-usuario/crear-usuario.component';
+import { UsuarioService } from '../../services/usuario.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -14,13 +16,16 @@ import { CrearUsuarioComponent } from '../usuarios/crear-usuario/crear-usuario.c
 export class DashboardComponent {
 
   rol: string = '';
-  modalAbierto=false;
+  usuarios: any[] = [];
 
+  modalAbierto=false;
 
   constructor(
     private router: Router,
-    private location: Location
+    private location: Location,
+    private usuariosService: UsuarioService
   ){}
+
 
   ngOnInit(): void{
     this.rol = localStorage.getItem('rol') || '';
@@ -28,6 +33,20 @@ export class DashboardComponent {
     if(!this.rol){
       this.router.navigate(['/']);
     }
+
+    this.cargarUsuarios();
+  }
+
+  cargarUsuarios(){
+    this.usuariosService.getUsuarios().subscribe({
+      next: (data) => {
+        console.log("Usuarios recibidos:",  data);
+        this.usuarios = data;
+      },
+      error: (err) => {
+        console.error("Error al cargar ussuarios", err)
+      }
+    });
   }
 
   volver(){

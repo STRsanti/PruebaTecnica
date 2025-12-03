@@ -15,12 +15,7 @@
   </div>
 
   <app-crear-usuario *ngIf="modalAbierto" (cerrarModal)="cerrarModal()"></app-crear-usuario>
-  <div class="Botones">
-
-    <button class="btn view">Departamento</button>
-    <button class="btn view">Estado</button>
-
-  </div>
+  
 
   <div class="TablaRegistros">
     <table class="tabla-usuarios">
@@ -37,25 +32,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Juan Perez</td>
-                <td>juan&#64;correo.com</td>
-                <td>Recursos Humanos</td>
-                <td>3214567890</td>
-                <td>2025-12-02</td>
-                <td><span class="activo">Activo</span></td>
-                <td><img src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" class="imagen"></td>
-                <td><img src="https://cdn-icons-png.flaticon.com/512/3143/3143497.png" class="imagen"></td>
-            </tr>
-            <tr>
-                <td>Laura Gómez</td>
-                <td>laura.gomez&#64;example.com</td>
-                <td>Sistemas</td>
-                <td>3109876543</td>
-                <td>2025-12-01</td>
-                <td><span class="inactivo">Inactivo</span></td>
-                <td><img src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" class="imagen"></td>
-                <td><img src="https://cdn-icons-png.flaticon.com/512/3143/3143497.png" class="imagen"></td>
+            <tr *ngFor="let u of usuarios">
+              <td>{{u.Nombre_Completo}}</td>
+              <td>{{u.Correo}}</td>
+              <td>{{u.departamento?.nombre}}</td>
+              <td>{{u.Telefono}}</td>
+              <td>{{u.created_at | date:'dd-MM-yyyy'}}</td>
+              <td>
+                <span class="{{ u.Estado == 1 ? 'activo' : 'inactivo' }}">
+                  {{ u.Estado == 1 ? 'Activo' : 'Inactivo' }}
+                </span>
+              </td>
+              <td>
+                <img src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" class="imagen">
+              </td>
+              <td>
+                <img src="https://cdn-icons-png.flaticon.com/512/3143/3143497.png" class="imagen">
+              </td>
             </tr>
         </tbody>
     </table>
