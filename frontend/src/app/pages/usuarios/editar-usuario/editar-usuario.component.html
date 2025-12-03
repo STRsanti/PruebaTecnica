@@ -1,1 +1,51 @@
-<p>editar-usuario works!</p>
+<div class="overlay" (click)="cerrarModal()"></div>
+
+<div class="modal animate">
+  <h2>Editar Usuario</h2>
+
+  <!-- El formulario ahora contendrá grupos de campos -->
+  <form (ngSubmit)="enviarFormularioEditado()">
+
+    <!-- GRUPO 1: Nombre -->
+    <div class="form-group">
+      <label>Nombre Completo</label>
+      <input type="text" [(ngModel)]="usuario.Nombre_Completo" name="nombre" required>
+    </div>
+    
+    <!-- GRUPO 2: Correo -->
+    <div class="form-group">
+      <label>Correo</label>
+      <input type="email" [(ngModel)]="usuario.Correo" name="correo" required>
+    </div>
+
+    <!-- Departamento -->
+    <div class="form-group">
+        <label>Departamento</label>
+        <select [(ngModel)]="usuario.Id_Departamento" name="departamento" required>
+            <option *ngFor="let dep of departamentos" [ngValue]="dep.id">{{ dep.nombre }}</option>
+        </select>
+    </div>
+    
+    <!-- GRUPO 4: Teléfono -->
+    <div class="form-group">
+      <label>Teléfono</label>
+      <input type="text" [(ngModel)]="usuario.Telefono" name="telefono">
+    </div>
+
+    <!-- Estado -->
+    <div class="form-group">
+      <label>Estado</label>
+      <select [(ngModel)]="usuario.Estado" name="estado">
+        <option [ngValue]="1">Activo</option>
+        <option [ngValue]="0">Inactivo</option>
+      </select>
+    </div>
+
+    <!-- Los botones ya están centrados con justify-content: space-between -->
+    <div class="botones">
+      <button type="submit" class="btn guardar">Guardar</button>
+      <button type="button" class="btn cancelar" (click)="cerrarModal()">Cancelar</button>
+    </div>
+
+  </form>
+</div>

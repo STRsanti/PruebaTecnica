@@ -26,6 +26,14 @@
     (cancelarModal)="cerrarModalEliminar()">
   </app-confirmar-eliminacion>
 
+  <app-editar-usuario
+    *ngIf="mostrarModalEditar"
+    [usuario]="usuarioEditar"
+    [departamentos]="departamentos"
+    (guardar)="guardarCambiosEditar($event)"
+    (cerrar)="cerrarModalEditar()">
+</app-editar-usuario>
+
   <div class="TablaRegistros">
     <table class="tabla-usuarios">
         <thead>
@@ -55,7 +63,8 @@
               <td>
                 <img 
                   src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" 
-                  class="imagen" 
+                  class="imagen"
+                  (click)="abrirModalEditar(u)"
                 >
               </td>
               <td>
@@ -69,6 +78,5 @@
     </table>
     
   </div>
-
 
 </div>

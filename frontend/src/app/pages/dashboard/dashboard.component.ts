@@ -5,12 +5,13 @@ import { Location } from '@angular/common';
 import { CrearUsuarioComponent } from '../usuarios/crear-usuario/crear-usuario.component';
 import { UsuarioService } from '../../services/usuario.service';
 import { ConfirmarEliminacionComponent } from '../usuarios/confirmar-eliminacion/confirmar-eliminacion.component';
-
+import { EditarUsuarioComponent } from '../usuarios/editar-usuario/editar-usuario.component';
+import { DepartamentoService } from '../../services/departamento.service'; 
 
 @Component({
   selector: 'app-dashboard',
   standalone:true,
-  imports: [CommonModule,CrearUsuarioComponent,ConfirmarEliminacionComponent],
+  imports: [CommonModule,CrearUsuarioComponent,ConfirmarEliminacionComponent,EditarUsuarioComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -19,15 +20,21 @@ export class DashboardComponent {
   rol: string = '';
   usuarios: any[] = [];
 
+  departamentos: any[] = [];
+
   modalAbierto=false;
 
   mostrarModalEliminar = false;
   idEliminar: number | null = null;
 
+  mostrarModalEditar = false;
+  usuarioEditar: any = {};
+
   constructor(
     private router: Router,
     private location: Location,
-    private usuariosService: UsuarioService
+    private usuariosService: UsuarioService,
+    private depService: DepartamentoService
   ){}
 
   confirmarEliminacion(id: number){
@@ -57,6 +64,7 @@ export class DashboardComponent {
     }
 
     this.cargarUsuarios();
+    this.cargarDepartamentos();
   }
 
   cargarUsuarios(){
@@ -81,6 +89,35 @@ export class DashboardComponent {
 
   cerrarModal(){
     this.modalAbierto = false;
+  }
+
+  cargarDepartamentos() {
+  this.depService.getDepartamentos().subscribe({
+      next: (data) => {
+          this.departamentos = data;
+      },
+      error: (err) => {
+          console.error("Error al cargar departamentos en Dashboard", err);
+      }
+  });
+}
+
+  abrirModalEditar(usuario: any){
+    console.log("Usuario recibido:", usuario)
+    this.usuarioEditar = {...usuario};
+    this.mostrarModalEditar= true;
+  }
+
+  guardarCambiosEditar(data: any){
+    this.usuariosService.editarUsuario(data.id, data).subscribe(() =>{
+      this.cargarUsuarios();
+      this.cargarDepartamentos(); 
+      this.mostrarModalEditar = false;
+    });
+  }
+
+  cerrarModalEditar(){
+    this.mostrarModalEditar = false;
   }
 
 }

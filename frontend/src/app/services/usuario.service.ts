@@ -11,12 +11,12 @@ export class UsuarioService {
   
   constructor(private http: HttpClient) { }
 
-  //Obtener usuarios
+  //Mostrar usuario
   getUsuarios(): Observable<any[]>{
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  //Crear usuarios
+  //Crear usuario
   crearUsuario(data: any): Observable<any>{
     return this.http.post<any>(this.apiUrl, data)
   }
@@ -24,5 +24,10 @@ export class UsuarioService {
   //Eliminar usuario
   eliminarUsuario(id: number){
     return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  //Editar usuario
+  editarUsuario(id: number, data: any):Observable<any>{
+    return this.http.put(`${this.apiUrl}/${id}`,data);
   }
 }
