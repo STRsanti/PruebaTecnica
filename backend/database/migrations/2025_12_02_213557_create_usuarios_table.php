@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('Correo')->unique();
             $table->unsignedBigInteger('Id_Departamento');
             $table->string('Telefono');
-            $table->timestamps();
             $table->boolean('Estado')->default(1);
+            $table->timestamps();
+            
 
             $table->foreign('Id_Departamento')->references('id')->on('Departamentos')->onDelete('cascade');
         });

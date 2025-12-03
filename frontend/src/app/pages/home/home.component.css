@@ -1,0 +1,40 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background: #f4f4f4;
+}
+
+.Carta {
+  width: 260px;
+  height: 250px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.25s;
+  color: white;
+}
+
+.Administrador {
+  background: #0d6efd;
+}
+
+.Usuario {
+  background: #198754;
+}
+
+.Carta:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}

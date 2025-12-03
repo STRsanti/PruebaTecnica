@@ -1,0 +1,55 @@
+<div class="DashboardContainer">
+
+  <div class="Volver" (click)="volver()">
+    <span class="flecha"><</span>
+  </div>  
+
+  <div class="Titulo">
+    <h1>Bienvenido</h1>
+    <span class="rol">Rol: {{ rol }}</span>
+  </div>
+
+  <div class="Botones">
+
+    <button class="btn view">Ver Registros</button>
+  </div>
+
+  <div class="TablaRegistros">
+    <table class="tabla-usuarios">
+        <thead>
+            <tr>
+                <th>Nombre </th>
+                <th>Correo</th>
+                <th>Departamento</th>
+                <th>Telefono</th>
+                <th>Fecha de Registro</th>
+                <th>Estado</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Juan Perez</td>
+                <td>juan&#64;correo.com</td>
+                <td>Recursos Humanos</td>
+                <td>3214567890</td>
+                <td>2025-12-02</td>
+                <td><span class="activo">Activo</span></td>
+                <td> ✏️</td>
+            </tr>
+            <tr>
+                <td>Laura Gómez</td>
+                <td>laura.gomez&#64;example.com</td>
+                <td>Sistemas</td>
+                <td>3109876543</td>
+                <td>2025-12-01</td>
+                <td><span class="inactivo">Inactivo</span></td>
+            </tr>
+        </tbody>
+    </table>
+    
+  </div>
+
+
+</div>
