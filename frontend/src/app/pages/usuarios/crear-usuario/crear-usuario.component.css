@@ -59,6 +59,32 @@
   outline: none;
   transition: 0.2s;
 }
+.form-group select,
+.select-departamento {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bbb;
+  outline: none;
+  transition: 0.2s;
+  color: #000;
+  background: #fff;
+  font-size: 14px;
+}
+
+.form-group select:focus,
+.select-departamento:focus {
+  border-color: #5da9e9;
+  box-shadow: 0 0 4px rgba(93, 169, 233, 0.5);
+}
+
+.form-group select option {
+  color: #000;
+  background: #fff;
+}
+
+.select-departamento option:disabled {
+  color: #999;
+}
 
 .form-group input:focus {
   border-color: #5da9e9;

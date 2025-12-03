@@ -1,12 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Models\Usuarios;
+use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\DepartamentoController;
 
-Route::get('/test', function () {
-    return ['message' => 'API funcionando'];
-});
+Route::get('/usuarios', [UsuariosController::class, 'index']);
+Route::post('/usuarios', [UsuariosController::class, 'store']);
 
-Route::get('/usuarios', function(){
-    return Usuarios::with('departamento')->get();
-});
+Route::get('/departamentos', [DepartamentoController::class, 'index']);

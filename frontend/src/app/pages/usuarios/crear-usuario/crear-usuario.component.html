@@ -17,8 +17,12 @@
 
     <div class="form-group">
       <label>Departamento</label>
-      <input type="text" [(ngModel)]="usuario.departamento" name="dep" required>
+      <select [(ngModel)]="usuario.id_departamento" name="dep" required class="select-departamento">
+        <option [ngValue]="null" disabled>Seleccione un departamento</option>
+        <option *ngFor="let dep of departamentos" [ngValue]="dep.id">{{ dep.nombre }}</option>
+      </select>
     </div>
+
 
     <div class="form-group">
       <label>Teléfono</label>
@@ -27,7 +31,11 @@
 
     <div class="form-group">
       <label>Estado</label>
-      <input type="text" [(ngModel)]="usuario.estado" name="esta" required>
+      <select [(ngModel)]="usuario.estado" name="estado" required class="select-departamento">
+        <option [ngValue]="null" disabled>Seleccione un estado</option>
+        <option [ngValue]="1">Activo</option>
+        <option [ngValue]="0">Inactivo</option>
+      </select>
     </div>
 
     <div class="botones">

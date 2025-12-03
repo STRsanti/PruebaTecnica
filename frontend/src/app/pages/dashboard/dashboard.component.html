@@ -14,7 +14,7 @@
     <button class="btn Crear" (click)="abrirModal()"> + Añadir usuario</button>
   </div>
 
-  <app-crear-usuario *ngIf="modalAbierto" (cerrarModal)="cerrarModal()"></app-crear-usuario>
+  <app-crear-usuario *ngIf="modalAbierto" (cerrarModal)="cerrarModal()" (usuarioCreado)="cargarUsuarios()"></app-crear-usuario>
   
 
   <div class="TablaRegistros">
