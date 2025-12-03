@@ -14,8 +14,17 @@
     <button class="btn Crear" (click)="abrirModal()"> + Añadir usuario</button>
   </div>
 
-  <app-crear-usuario *ngIf="modalAbierto" (cerrarModal)="cerrarModal()" (usuarioCreado)="cargarUsuarios()"></app-crear-usuario>
+  <app-crear-usuario 
+    *ngIf="modalAbierto" 
+    (cerrarModal)="cerrarModal()" 
+    (usuarioCreado)="cargarUsuarios()">
+  </app-crear-usuario>
   
+  <app-confirmar-eliminacion
+    *ngIf="mostrarModalEliminar"
+    (aceptar)="eliminar()"
+    (cancelarModal)="cerrarModalEliminar()">
+  </app-confirmar-eliminacion>
 
   <div class="TablaRegistros">
     <table class="tabla-usuarios">
@@ -44,10 +53,16 @@
                 </span>
               </td>
               <td>
-                <img src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" class="imagen">
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" 
+                  class="imagen" 
+                >
               </td>
               <td>
-                <img src="https://cdn-icons-png.flaticon.com/512/3143/3143497.png" class="imagen">
+                <img 
+                  src="https://cdn-icons-png.flaticon.com/512/3143/3143497.png" 
+                  class="imagen"
+                  (click)="confirmarEliminacion(u.id)">
               </td>
             </tr>
         </tbody>

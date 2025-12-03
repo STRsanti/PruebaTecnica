@@ -29,7 +29,7 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-       $user = Usuarios::create([
+        $user = Usuarios::create([
             'Nombre_Completo' => $request->Nombre_Completo,
             'Correo' => $request->Correo,
             'Id_Departamento' => $request->Id_Departamento,
@@ -81,6 +81,6 @@ class UsuariosController extends Controller
         $user = Usuarios::findOrFail($id);
         $user->delete();
 
-        return response()->json(['message' => 'Usuario eliminado']);
+        return response()->json(['message' => 'Usuario eliminado'],200);
     }
 }
