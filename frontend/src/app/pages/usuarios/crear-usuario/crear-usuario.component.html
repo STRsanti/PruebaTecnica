@@ -1,0 +1,39 @@
+<div class="overlay" (click)="cerrar()"></div>
+
+<div class="modal animate">
+  <h2>Crear Usuario</h2>
+
+  <form (ngSubmit)="crearUsuario()">
+
+    <div class="form-group">
+      <label>Nombre completo</label>
+      <input type="text" [(ngModel)]="usuario.nombre" name="nombre" required>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="usuario.email" name="email" required>
+    </div>
+
+    <div class="form-group">
+      <label>Departamento</label>
+      <input type="text" [(ngModel)]="usuario.departamento" name="dep" required>
+    </div>
+
+    <div class="form-group">
+      <label>Teléfono</label>
+      <input type="text" [(ngModel)]="usuario.telefono" name="tel" required>
+    </div>
+
+    <div class="form-group">
+      <label>Estado</label>
+      <input type="text" [(ngModel)]="usuario.estado" name="esta" required>
+    </div>
+
+    <div class="botones">
+      <button type="submit" class="btn guardar">Guardar</button>
+      <button type="button" class="btn cancelar" (click)="cerrar()">Cancelar</button>
+    </div>
+
+  </form>
+</div>

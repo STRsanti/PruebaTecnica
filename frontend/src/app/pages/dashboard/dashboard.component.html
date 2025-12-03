@@ -7,11 +7,19 @@
   <div class="Titulo">
     <h1>Bienvenido</h1>
     <span class="rol">Rol: {{ rol }}</span>
+
+  </div>
+  
+  <div class="BotonCrear">
+    <button class="btn Crear" (click)="abrirModal()"> + Añadir usuario</button>
   </div>
 
+  <app-crear-usuario *ngIf="modalAbierto" (cerrarModal)="cerrarModal()"></app-crear-usuario>
   <div class="Botones">
 
-    <button class="btn view">Ver Registros</button>
+    <button class="btn view">Departamento</button>
+    <button class="btn view">Estado</button>
+
   </div>
 
   <div class="TablaRegistros">
@@ -36,7 +44,8 @@
                 <td>3214567890</td>
                 <td>2025-12-02</td>
                 <td><span class="activo">Activo</span></td>
-                <td> ✏️</td>
+                <td><img src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" class="imagen"></td>
+                <td><img src="https://cdn-icons-png.flaticon.com/512/3143/3143497.png" class="imagen"></td>
             </tr>
             <tr>
                 <td>Laura Gómez</td>
@@ -45,6 +54,8 @@
                 <td>3109876543</td>
                 <td>2025-12-01</td>
                 <td><span class="inactivo">Inactivo</span></td>
+                <td><img src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" class="imagen"></td>
+                <td><img src="https://cdn-icons-png.flaticon.com/512/3143/3143497.png" class="imagen"></td>
             </tr>
         </tbody>
     </table>

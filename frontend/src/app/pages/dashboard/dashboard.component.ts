@@ -2,15 +2,21 @@ import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
+import { CrearUsuarioComponent } from '../usuarios/crear-usuario/crear-usuario.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule],
+  standalone:true,
+  imports: [CommonModule,CrearUsuarioComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+
   rol: string = '';
+  modalAbierto=false;
+
+
   constructor(
     private router: Router,
     private location: Location
@@ -27,4 +33,13 @@ export class DashboardComponent {
   volver(){
     this.location.back();
   }
+
+  abrirModal(){
+    this.modalAbierto = true;
+  }
+
+  cerrarModal(){
+    this.modalAbierto = false;
+  }
+
 }
