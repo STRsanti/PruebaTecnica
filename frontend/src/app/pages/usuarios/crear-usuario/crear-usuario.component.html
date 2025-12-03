@@ -1,45 +1,56 @@
 <div class="overlay" (click)="cerrar()"></div>
 
+<!--Contenedor principal-->
 <div class="modal animate">
   <h2>Crear Usuario</h2>
-
+  <!--Manejo de envios cuando presiona guardar el usuario-->
   <form (ngSubmit)="crearUsuario()">
 
+    <!--Nombre completo-->
     <div class="form-group">
       <label>Nombre completo</label>
+      <!--Enlazammos el input -->
       <input type="text" [(ngModel)]="usuario.nombre" name="nombre" required>
     </div>
 
+    <!--Correo-->
     <div class="form-group">
-      <label>Email</label>
+      <label>Correo</label>
       <input type="email" [(ngModel)]="usuario.email" name="email" required>
     </div>
 
+    <!--Departamento-->
     <div class="form-group">
       <label>Departamento</label>
+      <!--Enlaza con el usuario y departamento que son numericos-->
       <select [(ngModel)]="usuario.id_departamento" name="dep" required class="select-departamento">
+        <!--Selecciona un valor valido-->
         <option [ngValue]="null" disabled>Seleccione un departamento</option>
         <option *ngFor="let dep of departamentos" [ngValue]="dep.id">{{ dep.nombre }}</option>
       </select>
     </div>
 
-
+    <!--Telefono-->
     <div class="form-group">
       <label>Teléfono</label>
       <input type="text" [(ngModel)]="usuario.telefono" name="tel" required>
     </div>
 
+    <!--Estado-->
     <div class="form-group">
       <label>Estado</label>
       <select [(ngModel)]="usuario.estado" name="estado" required class="select-departamento">
         <option [ngValue]="null" disabled>Seleccione un estado</option>
+        <!--Enlazar valores numericos-->
         <option [ngValue]="1">Activo</option>
         <option [ngValue]="0">Inactivo</option>
       </select>
     </div>
 
     <div class="botones">
+      <!--Dispara la accion de guardar-->
       <button type="submit" class="btn guardar">Guardar</button>
+      <!--Dispara la accion de cerrar el modal-->
       <button type="button" class="btn cancelar" (click)="cerrar()">Cancelar</button>
     </div>
 

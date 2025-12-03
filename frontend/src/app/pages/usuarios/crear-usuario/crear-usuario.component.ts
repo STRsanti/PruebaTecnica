@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output,OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DepartamentoService } from '../../../services/departamento.service';
 import { CommonModule } from '@angular/common';
+//Importacion de servicios necesarios para comunicar las apis
 import { UsuarioService } from '../../../services/usuario.service';
-
+import { DepartamentoService } from '../../../services/departamento.service';
 @Component({
   selector: 'app-crear-usuario',
   standalone:true,
@@ -12,42 +12,38 @@ import { UsuarioService } from '../../../services/usuario.service';
   styleUrl: './crear-usuario.component.css'
 })
 export class CrearUsuarioComponent {
-  @Output() cerrarModal = new EventEmitter<void>();
-  @Output() usuarioCreado = new EventEmitter<void>();
 
+  //Modelo de datos para el formulario de añadir usuarios
   usuario = {
     nombre: '',
     email: '',
     departamento: '',
-    id_departamento:null,
+    id_departamento:null,//Usamos id_departamento para enlazar con el select
     telefono: '',
     estado: null
   };
 
+  //Almacenar lista de departamentos disponibles
   departamentos: any[] = [];
 
+  //Eventos
+  @Output() cerrarModal = new EventEmitter<void>();//Cerrar el modal 
+  @Output() usuarioCreado = new EventEmitter<void>();//Cuando el usuario se guardo con exito
+
+  //Constructor
   constructor(
-    private depService: DepartamentoService,
-    private usuarioService: UsuarioService
+    private depService: DepartamentoService,//Inyeccion del servicio departamentos
+    private usuarioService: UsuarioService//Inyeccion del servicio usuarios
   ){}
 
   ngOnInit(){
+    //Carga la lista de departamentos
     this.cargarDepartamento();
   }
 
-  cargarDepartamento() {
-  this.depService.getDepartamentos().subscribe({
-    next: (res) => {
-      console.log("Departamentos recibidos:", res);
-      this.departamentos = res;
-    },
-    error: (err) => {
-      console.error("Error al cargar departamentos", err);
-    }
-  });
-}
-
+  //Envio del formulario, recompila datos y llama el servicio para crear el usuario
   crearUsuario(){
+    //Mapeamos datos a la estructura que espera nuestra api
     const data = {
       Nombre_Completo: this.usuario.nombre,
       Correo: this.usuario.email,
@@ -56,9 +52,11 @@ export class CrearUsuarioComponent {
       Estado: this.usuario.estado
     }
 
+    //Llammos al servicio para realizar la peticion POST
     this.usuarioService.crearUsuario(data).subscribe({
       next: (res) =>{
         console.log("Usuario guardado:", res);
+        //Emite los diferentes eventos
         this.usuarioCreado.emit();
         this.cerrarModal.emit();
       },
@@ -70,7 +68,23 @@ export class CrearUsuarioComponent {
     
   }
 
+  //Cerrar el modal
   cerrar(){
     this.cerrarModal.emit();
   }
+
+  //Carga la lista completa de departamentos desde la api
+  cargarDepartamento() {
+    this.depService.getDepartamentos().subscribe({
+      next: (res) => {
+        console.log("Departamentos recibidos:", res);
+        this.departamentos = res;
+      },
+      error: (err) => {
+        console.error("Error al cargar departamentos", err);
+      }
+    });
+  }
+
+  
 }

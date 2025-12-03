@@ -13,7 +13,7 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        return Usuarios::with('departamento')->get();
+        return Usuarios::with('departamento')->get();//Mostrar de nombre de los departamentos y no el codigo
     }
 
     /**

@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //creamos los atributos de la tabla 
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('Nombre_Completo');
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->boolean('Estado')->default(1);
             $table->timestamps();
             
-
+            //Conexion con la tabla departamentos
             $table->foreign('Id_Departamento')->references('id')->on('Departamentos')->onDelete('cascade');
         });
     }

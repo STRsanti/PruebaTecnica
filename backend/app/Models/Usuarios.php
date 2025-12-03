@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Usuarios extends Model
 {
     use HasFactory;
-    protected $table = 'usuarios';
 
+    protected $table = 'usuarios';
+    //modelo
     protected $fillable = [
         'Nombre_Completo',
         'Correo',
@@ -18,6 +19,7 @@ class Usuarios extends Model
         'Estado'
     ];
 
+    //Relacion con la tabla departamentos
     public function departamento(){
         return $this->belongsTo(Departamento::class, 'Id_Departamento','id');
     }

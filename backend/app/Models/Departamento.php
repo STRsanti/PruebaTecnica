@@ -10,11 +10,11 @@ class Departamento extends Model
     use HasFactory;
 
     protected $table = 'departamentos';
-
+    //modelo
     protected $fillable = [
         'nombre'
     ];
-
+    //Relacion con la tabla usuarios
     public function usuarios(){
         return $this->hasMany(Usuarios::class, 'Id_Departamento', 'id');
     }
